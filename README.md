@@ -1,7 +1,5 @@
-# AutoPID
+# AutoPID_V2
 
-Arduino AutoPID library
+Arduino AutoPID_V2 library, fork from AutoPID
 
 A simple PID library featuring time scaling, bang-bang control, and PWM relay control.
-
-[Full Documentation](https://r-downing.github.io/AutoPID/)
