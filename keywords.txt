@@ -1,13 +1,13 @@
 #######################################
-# Syntax Coloring Map For AutoPID Library
+# Syntax Coloring Map For AutoPID_V2 Library
 #######################################
 
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
 
-AutoPID	KEYWORD1
-AutoPIDRelay	KEYWORD1
+AutoPID_V2	KEYWORD1
+AutoPID_V2Relay	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
