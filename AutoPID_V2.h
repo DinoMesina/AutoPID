@@ -27,13 +27,17 @@ class AutoPID_V2 {
     void stop();
     void reset();
     bool isStopped();
-
+    // get Proportional Integral Derivative values
+    double getProportional();
     double getIntegral();
+    double getDerivative();
+    // set Integral values
     void setIntegral(double integral);
 
   private:
     double _Kp, _Ki, _Kd;
-    double _integral = 0.0, _previousError = 0.0, _previousInput = 0.0;
+    double _proportional = 0.0, _integral = 0.0, _derivative = 0.0;
+    double _previousError = 0.0, _previousInput = 0.0;
     double _bangOn = 0.0, _bangOff = 0.0;
     double *_input, *_setpoint, *_output;
     double _outputMin, _outputMax;
