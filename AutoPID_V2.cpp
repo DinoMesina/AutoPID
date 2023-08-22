@@ -45,27 +45,26 @@ void AutoPID_V2::run() {
     _stopped = false;
     reset();
   }
-  // if bang thresholds are defined and we're outside of them, use bang-bang control
+  // if bang thresholds are defined and we're outside of them, use bang-bang control 
   if (_bangOn && ((*_setpoint - *_input) > _bangOn)) {
     *_output = _outputMax;
     _lastStep = millis();
   } else if (_bangOff && ((*_input - *_setpoint) > _bangOff)) {
     *_output = _outputMin;
     _lastStep = millis();
-  } else {                                                      // otherwise use PID control
-    unsigned long _dT = millis() - _lastStep;                   // calculate time since last update
-    if (_dT >= _timeStep) {                                     // if long enough, do PID calculations
+  } else {                                                      // otherwise use PID control 
+    unsigned long _dT = millis() - _lastStep;                   // calculate time since last update 
+    if (_dT >= _timeStep) {                                     // if long enough, do PID calculations 
       _lastStep = millis(); 
       _dT /= 1000.0;                                            // delta time in seconds 
-      double _error = *_setpoint - *_input;                     // error
+      double _error = *_setpoint - *_input;                     // error 
       _proportional = _error * _Kp;                             // proportional 
-      _derivative = ((*_input - _previousInput) / _dT) * _Kd;   // derivative of input, it is not influenced by the setpoint changes 
-      double PD = _proportional - _derivative;                  // PD (-D because is referenced to the input values)
-      _integral += ((_error + _previousError) / 2) * _dT * _Ki; // Riemann sum integral
+      _derivative = ((_error - _previousError) / _dT) * _Kd;    // derivative 
+      double PD = _proportional + _derivative;                  // PD 
+      _integral += ((_error + _previousError) / 2) * _dT * _Ki; // Riemann sum integral 
       _integral = constrain(_integral, (_outputMin - PD), (_outputMax - PD)); // limit the integration sum to limit the output 
       _previousError = _error;
-      _previousInput = *_input;
-      *_output = constrain((PD + _integral), _outputMin, _outputMax);
+      *_output = constrain((PD + _integral), _outputMin, _outputMax); // limit the output 
     }
   }
 } // void AutoPID_V2::run

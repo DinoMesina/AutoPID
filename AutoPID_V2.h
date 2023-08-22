@@ -37,7 +37,7 @@ class AutoPID_V2 {
   private:
     double _Kp, _Ki, _Kd;
     double _proportional = 0.0, _integral = 0.0, _derivative = 0.0;
-    double _previousError = 0.0, _previousInput = 0.0;
+    double _previousError = 0.0;
     double _bangOn = 0.0, _bangOff = 0.0;
     double *_input, *_setpoint, *_output;
     double _outputMin, _outputMax;
